@@ -114,8 +114,17 @@ public class Array {
         return remove(0);
     }
 
+    //从数组中删除最后一个元素，返回删除的元素
     public int removeLast() {
         return remove(size - 1);
+    }
+
+    //从数组中删除元素e
+    public void removeElement(int e) {
+        int index = find(e);
+        if (index != -1) {
+            remove(index);
+        }
     }
 
     @Override
