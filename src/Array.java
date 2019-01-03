@@ -46,12 +46,13 @@ public class Array<E> {
 
     //在第index个位置插入一个新元素e
     public void add(int index, E e) {
-        if (size == data.length) {
-            throw new IllegalArgumentException("AddLast failed. Array is full.");
-        }
-
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("AddLast failed. Requires index <= 0 and index <= size.");
+        }
+
+        if (size == data.length) {
+//            resize((int) (1.5 * size));
+            resize(2 * size);
         }
 
         for (int i = size - 1; i >= index; i--) {
@@ -89,7 +90,7 @@ public class Array<E> {
     //查找数组中元素e所在的索引，如果不存在元素e，则返回-1
     public int find(E e) {
         for (int i = 0; i < size; i++) {
-            if (data[i].equals(e)){
+            if (data[i].equals(e)) {
                 return i;
             }
         }
@@ -102,11 +103,16 @@ public class Array<E> {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
         }
         E ret = data[index];
-        for (int i = index; i < size; i++) {
-            data[i] = data[i + 1];
+        for (int i = index + 1; i < size; i++) {
+            data[i - 1] = data[i];
         }
         size--;
         data[size] = null; // loitering objects != memory leak
+
+        if (size == data.length / 2) {
+            resize(data.length / 2);
+        }
+
         return ret;
     }
 
@@ -141,5 +147,13 @@ public class Array<E> {
         }
         res.append("]");
         return res.toString();
+    }
+
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) {
+            newData[i] = data[i];
+        }
+        data = newData;
     }
 }

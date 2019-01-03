@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        Array<Integer> arr = new Array(20);
+        Array<Integer> arr = new Array();
         for (int i = 0;i<10;i++){
             arr.addLast(i);
         }
@@ -24,5 +24,6 @@ public class Main {
 
         arr.remove(5);
         System.out.println(arr);
+
     }
 }
