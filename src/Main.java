@@ -25,5 +25,13 @@ public class Main {
         arr.remove(5);
         System.out.println(arr);
 
+        arr.removeLast();
+        System.out.println(arr);
+
+        arr.removeLast();
+        System.out.println(arr);
+
+        arr.removeLast();
+        System.out.println(arr);
     }
 }
