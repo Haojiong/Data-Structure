@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -36,15 +38,45 @@ public class Main {
 //        System.out.println(arr);
 //        ==========================================================================================================
 
-        ArrayStack<Integer> stack = new ArrayStack<>();
+//        ArrayStack的测试代码
+//        ArrayStack<Integer> stack = new ArrayStack<>();
+//
+//        for (int i = 0; i < 5; i++) {
+//            stack.push(i);
+//            System.out.println(stack);
+//        }
+//
+//        stack.pop();
+//        System.out.println(stack);
 
-        for (int i = 0; i < 5; i++) {
-            stack.push(i);
-            System.out.println(stack);
+//        ===========================================================================================================
+
+        int optCount = 1000000;
+
+        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+        double time1 = testQueue(arrayQueue, optCount);
+        System.out.println("ArrayQueue, time: " + time1 + "s");
+
+        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+        double time2 = testQueue(loopQueue, optCount);
+        System.out.println("LoopQueue, time: " + time2 + "s");
+
+    }
+
+    //测试enqueue和dequeue的时间
+    private static double testQueue(Queue<Integer> q, int queCount) {
+
+        long startTime = System.nanoTime();
+
+        Random random = new Random();
+        for (int i = 0; i < queCount; i++) {
+            q.enqueue(random.nextInt(Integer.MAX_VALUE));
+        }
+        for (int i = 0; i < queCount; i++) {
+            q.dequeue();
         }
 
-        stack.pop();
-        System.out.println(stack);
-
+        long endTime = System.nanoTime();
+        return (endTime - startTime) / 1000000000.0;
     }
 }
