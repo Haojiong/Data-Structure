@@ -52,7 +52,7 @@ public class LinkedList<E> {
 
 
         Node prev = dummyHead;
-        for (int i = 0; i < index ; i++) {
+        for (int i = 0; i < index; i++) {
             prev = prev.next;
 
         }
@@ -125,6 +125,33 @@ public class LinkedList<E> {
             }
         }
         return false;
+    }
+
+    //删除链表中index处的元素
+    public E remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed. Illegal index.");
+        }
+
+        Node prev = dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+        }
+        Node cur = prev.next;
+        prev.next = cur.next;
+        cur.next = new Node(null, null);
+        size--;
+        return cur.e;
+    }
+
+    //删除链表开始位置的元素
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    //删除链表最后位置的元素
+    public E removeLast() {
+        return remove(size - 1);
     }
 
     @Override
