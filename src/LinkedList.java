@@ -52,17 +52,17 @@ public class LinkedList<E> {
 
 
         Node prev = dummyHead;
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index ; i++) {
             prev = prev.next;
 
+        }
 
 //            Node newNode = new Node(e);
 //            newNode.next = prev.next;
 //            prev.next = newNode;
-            prev.next = new Node(e, prev.next);
+        prev.next = new Node(e, prev.next);
 
-            size++;
-        }
+        size++;
 
     }
 
@@ -77,6 +77,67 @@ public class LinkedList<E> {
     //在链表最后添加一个元素e
     public void addLast(E e) {
         add(size, e);
+    }
+
+    //获得链表中第index个元素
+    public E get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Get failed. Illegal index.");
+        }
+
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    //获得链表的第一个元素
+    public E getFirst() {
+        return get(0);
+    }
+
+    //获得链表的最后一个元素
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    //修改链表的第index个元素
+    public void set(int index, E e) {
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Set failed. Illegal index.");
+        }
+
+        Node cur = dummyHead.next;
+        for (int i = 0; i < index; i++) {
+            cur = cur.next;
+        }
+        cur.e = e;
+    }
+
+    //查找链表中是否存在元素e
+    public boolean contains(E e) {
+        Node cur = dummyHead.next;
+        for (int i = 0; i < size; i++) {
+            cur = cur.next;
+            if (cur.e.equals(e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+
+        Node cur = dummyHead.next;
+        while (cur != null) {
+            res.append(cur + "->");
+            cur = cur.next;
+        }
+        res.append("NULL");
+        return res.toString();
     }
 
 }

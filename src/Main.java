@@ -50,16 +50,27 @@ public class Main {
 //        System.out.println(stack);
 
 //        ===========================================================================================================
+//        ArrayQueue和LoopQueue的性能测试
+//        int optCount = 1000000;
+//
+//        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
+//        double time1 = testQueue(arrayQueue, optCount);
+//        System.out.println("ArrayQueue, time: " + time1 + "s");
+//
+//        LoopQueue<Integer> loopQueue = new LoopQueue<>();
+//        double time2 = testQueue(loopQueue, optCount);
+//        System.out.println("LoopQueue, time: " + time2 + "s");
 
-        int optCount = 1000000;
+//        ===========================================================================================================
 
-        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
-        double time1 = testQueue(arrayQueue, optCount);
-        System.out.println("ArrayQueue, time: " + time1 + "s");
+        LinkedList<Integer> linkedlist = new LinkedList<>();
+        for (int i = 0; i < 5; i++) {
+            linkedlist.addFirst(i);
+            System.out.println(linkedlist);
+        }
 
-        LoopQueue<Integer> loopQueue = new LoopQueue<>();
-        double time2 = testQueue(loopQueue, optCount);
-        System.out.println("LoopQueue, time: " + time2 + "s");
+        linkedlist.add(2,666);
+        System.out.println(linkedlist);
 
     }
 
