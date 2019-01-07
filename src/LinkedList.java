@@ -26,11 +26,11 @@ public class LinkedList<E> {
         }
     }
 
-    private Node head;
+    private Node dummyHead;
     private int size;
 
     public LinkedList() {
-        head = null;
+        dummyHead = new Node(null, null);
         size = 0;
     }
 
@@ -44,29 +44,17 @@ public class LinkedList<E> {
         return size;
     }
 
-    //链表头添加新的元素e
-    public void addFirst(E e) {
-//        Node node = new Node(e);
-//        node.next = head;
-//        head = node;
-        head = new Node(e, head);
-
-        size++;
-    }
-
     //在链表index处增加一个新元素e
     public void add(int index, E e) {
         if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Illegal index.");
         }
 
-        if (index == 0) {
-            addFirst(e);
-        } else {
-            Node prev = head;
-            for (int i = 0; i < index - 1; i++) {
-                prev = prev.next;
-            }
+
+        Node prev = dummyHead;
+        for (int i = 0; i < index; i++) {
+            prev = prev.next;
+
 
 //            Node newNode = new Node(e);
 //            newNode.next = prev.next;
@@ -76,6 +64,14 @@ public class LinkedList<E> {
             size++;
         }
 
+    }
+
+    //链表头添加新的元素e
+    public void addFirst(E e) {
+//        Node node = new Node(e);
+//        node.next = head;
+//        head = node;
+        add(0, e);
     }
 
     //在链表最后添加一个元素e
