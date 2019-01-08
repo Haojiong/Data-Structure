@@ -51,7 +51,7 @@ public class Main {
 
 //        ===========================================================================================================
 //        ArrayQueue和LoopQueue的性能测试
-//        int optCount = 1000000;
+//        int optCount = 100000;
 //
 //        ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
 //        double time1 = testQueue(arrayQueue, optCount);
@@ -60,6 +60,10 @@ public class Main {
 //        LoopQueue<Integer> loopQueue = new LoopQueue<>();
 //        double time2 = testQueue(loopQueue, optCount);
 //        System.out.println("LoopQueue, time: " + time2 + "s");
+//
+//        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+//        double time3 = testQueue(linkedListQueue, optCount);
+//        System.out.println("LinkedListQueue, time: " + time3 + "s");
 
 //        ===========================================================================================================
 
@@ -95,15 +99,15 @@ public class Main {
 //        System.out.println(stack);
 //        ===========================================================================================================
 //        ArrayStack和LinkedListStack的性能测试
-        int optCount = 1000000;
-
-        ArrayStack<Integer> arrayStack = new ArrayStack<>();
-        double time1 = testStack(arrayStack, optCount);
-        System.out.println("ArrayStack, time: " + time1 + "s");
-
-        LinkedListStack<Integer> linkedListStack = new LinkedListStack<>();
-        double time2 = testStack(linkedListStack, optCount);
-        System.out.println("LinkedListStack, time: " + time2 + "s");
+//        int optCount = 1000000;
+//
+//        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+//        double time1 = testStack(arrayStack, optCount);
+//        System.out.println("ArrayStack, time: " + time1 + "s");
+//
+//        LinkedListStack<Integer> linkedListStack = new LinkedListStack<>();
+//        double time2 = testStack(linkedListStack, optCount);
+//        System.out.println("LinkedListStack, time: " + time2 + "s");
 
 
     }
