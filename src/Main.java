@@ -63,23 +63,48 @@ public class Main {
 
 //        ===========================================================================================================
 
-        LinkedList<Integer> linkedlist = new LinkedList<>();
-        for (int i = 0; i < 5; i++) {
-            linkedlist.addFirst(i);
-            System.out.println(linkedlist);
-        }
+//        LinkedList的测试代码
+//        LinkedList<Integer> linkedlist = new LinkedList<>();
+//        for (int i = 0; i < 5; i++) {
+//            linkedlist.addFirst(i);
+//            System.out.println(linkedlist);
+//        }
+//
+//        linkedlist.add(2,666);
+//        System.out.println(linkedlist);
+//
+//        linkedlist.remove(2);
+//        System.out.println(linkedlist);
+//
+//        linkedlist.removeFirst();
+//        System.out.println(linkedlist);
+//
+//        linkedlist.removeLast();
+//        System.out.println(linkedlist);
+//        ==========================================================================================================
 
-        linkedlist.add(2,666);
-        System.out.println(linkedlist);
+//        LinkedListStack的测试代码
+//        LinkedListStack<Integer> stack = new LinkedListStack<>();
+//
+//        for (int i = 0; i < 5; i++) {
+//            stack.push(i);
+//            System.out.println(stack);
+//        }
+//
+//        stack.pop();
+//        System.out.println(stack);
+//        ===========================================================================================================
+//        ArrayStack和LinkedListStack的性能测试
+        int optCount = 1000000;
 
-        linkedlist.remove(2);
-        System.out.println(linkedlist);
+        ArrayStack<Integer> arrayStack = new ArrayStack<>();
+        double time1 = testStack(arrayStack, optCount);
+        System.out.println("ArrayStack, time: " + time1 + "s");
 
-        linkedlist.removeFirst();
-        System.out.println(linkedlist);
+        LinkedListStack<Integer> linkedListStack = new LinkedListStack<>();
+        double time2 = testStack(linkedListStack, optCount);
+        System.out.println("LinkedListStack, time: " + time2 + "s");
 
-        linkedlist.removeLast();
-        System.out.println(linkedlist);
 
     }
 
@@ -94,6 +119,23 @@ public class Main {
         }
         for (int i = 0; i < queCount; i++) {
             q.dequeue();
+        }
+
+        long endTime = System.nanoTime();
+        return (endTime - startTime) / 1000000000.0;
+    }
+
+    //测试push和pop的时间
+    private static double testStack(Stack<Integer> q, int queCount) {
+
+        long startTime = System.nanoTime();
+
+        Random random = new Random();
+        for (int i = 0; i < queCount; i++) {
+            q.push(random.nextInt(Integer.MAX_VALUE));
+        }
+        for (int i = 0; i < queCount; i++) {
+            q.pop();
         }
 
         long endTime = System.nanoTime();
