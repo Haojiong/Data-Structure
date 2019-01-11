@@ -26,4 +26,17 @@ public class BST<E extends Comparable<E>> {
     public boolean isEmpty() {
         return size == 0;
     }
+
+    public void add(E e) {
+        if (root == null) {
+            root = new Node(e);
+            size++;
+        } else {
+            add(root, e);
+        }
+    }
+
+    private void add(Node node, E e){
+        
+    }
 }
