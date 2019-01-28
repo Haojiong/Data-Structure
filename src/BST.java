@@ -91,14 +91,14 @@ public class BST<E extends Comparable<E>> {
         Stack<Node> stack = new Stack<>();
         stack.push(root);
 
-        while (!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             Node cur = stack.pop();
             System.out.println(cur.e);
 
-            if (cur.right!=null){
+            if (cur.right != null) {
                 stack.push(cur.right);
             }
-            if (cur.left!=null){
+            if (cur.left != null) {
                 stack.push(cur.left);
             }
         }
@@ -136,21 +136,138 @@ public class BST<E extends Comparable<E>> {
     }
 
     //层序遍历
-    public void levelOrder(){
-       Queue<Node> q = new LinkedList<>();
-       q.add(root);
+    public void levelOrder() {
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
 
-       while(!q.isEmpty()){
-           Node cur = q.remove();
-           System.out.println(cur.e);
+        while (!q.isEmpty()) {
+            Node cur = q.remove();
+            System.out.println(cur.e);
 
-           if(cur.left!=null){
-               q.add(cur.left);
-           }
-           if(cur.right!=null){
-               q.add(cur.right);
-           }
-       }
+            if (cur.left != null) {
+                q.add(cur.left);
+            }
+            if (cur.right != null) {
+                q.add(cur.right);
+            }
+        }
+    }
+
+    //返回该树最小值
+    public E minimum() {
+        if (root == null) {
+            throw new IllegalArgumentException("BST is empty!");
+        }
+        return minimum(root).e;
+    }
+
+    //返回最小值节点
+    private Node minimum(Node node) {
+        if (node.left == null) {
+            return node;
+        }
+
+        return minimum(node.left);
+    }
+
+    //返回该树最小值
+    public E maximum() {
+        if (root == null) {
+            throw new IllegalArgumentException("BST is empty!");
+        }
+        return maximum(root).e;
+    }
+
+    //返回最大值节点
+    private Node maximum(Node node) {
+        if (node.right == null) {
+            return node;
+        }
+
+        return maximum(node.right);
+    }
+
+    //删除二分搜索树的最小值
+    public E removeMin() {
+        E ret = minimum();
+        root = removeMin(root);
+        return ret;
+    }
+
+    //删除以Node为根的二分搜索数的最小值
+    private Node removeMin(Node node) {
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+            size--;
+            return rightNode;
+        }
+
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    //删除二分搜索树的最大值
+    public E removeMax() {
+        E ret = maximum();
+        root = removeMax(root);
+        return ret;
+    }
+
+    //删除以Node为根的二分搜索数的最小值
+    private Node removeMax(Node node) {
+        if (node.right == null) {
+            Node leftNode = node.left;
+            node.left = null;
+            size--;
+            return leftNode;
+        }
+
+        node.right = removeMax(node.right);
+        return node;
+    }
+
+    //删除任意一个元素
+    public void remove(E e) {
+        root = remove(root, e);
+    }
+
+    //删除以node为根的任意一个元素
+    private Node remove(Node node, E e) {
+        if (node == null) {
+            return null;
+        }
+
+        if (e.compareTo(node.e) > 0) {
+            node.right = remove(node.right, e);
+            return node;
+        } else if (e.compareTo(node.e) < 0) {
+            node.left = remove(node.left, e);
+            return node;
+        } else {//e == node.e
+
+            if (node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                return rightNode;
+            }
+
+            if (node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                return leftNode;
+            }
+
+            Node successor = minimum(node.right);
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+
+            node.right = node.left = null;
+            return successor;
+        }
+
     }
 
     @Override
