@@ -148,24 +148,51 @@ public class Main {
 //        System.out.println("removeMin test completed");
 //        ===========================================================================================================
 //        二分搜索树删除最大值
-        BST<Integer> bst = new BST<>();
-        Random random = new Random();
-        int n = 1000;
-        for (int i = 0; i < n; i++) {
-            bst.add(random.nextInt(10000));
-        }
-        ArrayList<Integer> nums = new ArrayList<>();
-        while (!bst.isEmpty()) {
-            nums.add(bst.removeMax());
-        }
-        System.out.println(nums);
-        for (int i = 1; i < nums.size(); i++) {
-            if (nums.get(i - 1) < nums.get(i)) {
-                throw new IllegalArgumentException("Error");
-            }
-        }
-        System.out.println("removeMax test completed");
+//        BST<Integer> bst = new BST<>();
+//        Random random = new Random();
+//        int n = 1000;
+//        for (int i = 0; i < n; i++) {
+//            bst.add(random.nextInt(10000));
+//        }
+//        ArrayList<Integer> nums = new ArrayList<>();
+//        while (!bst.isEmpty()) {
+//            nums.add(bst.removeMax());
+//        }
+//        System.out.println(nums);
+//        for (int i = 1; i < nums.size(); i++) {
+//            if (nums.get(i - 1) < nums.get(i)) {
+//                throw new IllegalArgumentException("Error");
+//            }
+//        }
+//        System.out.println("removeMax test completed");
+//        ===========================================================================================================
+        System.out.println("Pride and Prejudice");
 
+        ArrayList<String> words1 = new ArrayList<>();
+        FileOperation.readFile("pride-and-prejudice.txt",words1);
+
+        System.out.println("Total words: "+words1.size());
+
+        BST<String> set1 = new BST<>();
+        for (String word:words1){
+            set1.add(word);
+        }
+
+        System.out.println("Total different words: "+set1.size());
+
+        System.out.println("A Tale of Two Cities");
+
+        ArrayList<String> words2 = new ArrayList<>();
+        FileOperation.readFile("a-tale-of-two-cities.txt",words2);
+
+        System.out.println("Total words: "+words2.size());
+
+        BST<String> set2 = new BST<>();
+        for (String word:words2){
+            set2.add(word);
+        }
+
+        System.out.println("Total different words: "+set2.size());
 
     }
 
